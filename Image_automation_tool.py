@@ -3,6 +3,7 @@ from PIL import ImageEnhance
 import os
 import numpy as np
 import logging
+import sys
 
 logging.basicConfig(
     filename="process.log",
@@ -10,7 +11,11 @@ logging.basicConfig(
     format="%(asctime)s - %(message)s"
 )
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    BASE_DIR = sys._MEIPASS
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    
 
 INPUT_DIR = os.path.join(BASE_DIR, 'input_imgs')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'output_imgs')

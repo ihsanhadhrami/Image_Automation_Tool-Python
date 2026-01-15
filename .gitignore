@@ -1,4 +1,12 @@
+# PyInstaller
+dist/
+build/
+*.spec
+*.exe
+
+# Runtime
 output_imgs/
-__pycache__/
 process.log
+__pycache__/
 .env
+
