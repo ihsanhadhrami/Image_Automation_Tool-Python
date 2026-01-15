@@ -15,7 +15,7 @@ if getattr(sys, 'frozen', False):
     BASE_DIR = sys._MEIPASS
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    
+
 
 INPUT_DIR = os.path.join(BASE_DIR, 'input_imgs')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'output_imgs')
@@ -90,14 +90,9 @@ def safe_apply(func, img, factor, name):
 watermark = Image.open(WATERMARK_PATH).convert("RGBA")
 
 if not os.path.exists(INPUT_DIR):
-    print("❌ input_imgs folder not found.")
-    print("➡️ Please create 'input_imgs' and add images.")
-    input("Press Enter to exit...")
-    exit()
-
-if not any(fname.lower().endswith(('.jpg', '.jpeg', '.png')) for fname in os.listdir(INPUT_DIR)):
-    print("❌ No images found in input_imgs.")
-    print("➡️ Please add images and run again.")
+    os.makedirs(INPUT_DIR)
+    print("📁 'input_imgs' folder created.")
+    print("➡️ Add images into 'input_imgs' and run again.")
     input("Press Enter to exit...")
     exit()
 
