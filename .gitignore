@@ -1,0 +1,4 @@
+output_imgs/
+__pycache__/
+process.log
+.env

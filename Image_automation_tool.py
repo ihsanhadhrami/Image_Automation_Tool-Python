@@ -84,11 +84,21 @@ def safe_apply(func, img, factor, name):
 
 watermark = Image.open(WATERMARK_PATH).convert("RGBA")
 
+if not os.path.exists(INPUT_DIR):
+    print("❌ input_imgs folder not found.")
+    print("➡️ Please create 'input_imgs' and add images.")
+    input("Press Enter to exit...")
+    exit()
+
+if not any(fname.lower().endswith(('.jpg', '.jpeg', '.png')) for fname in os.listdir(INPUT_DIR)):
+    print("❌ No images found in input_imgs.")
+    print("➡️ Please add images and run again.")
+    input("Press Enter to exit...")
+    exit()
+
+
 for filename in os.listdir(INPUT_DIR):
     if not filename.lower().endswith(('.jpg', '.jpeg', '.png')):
-        continue
-
-    if filename == 'watermark.png':
         continue
 
 
