@@ -12,14 +12,16 @@ logging.basicConfig(
 )
 
 if getattr(sys, 'frozen', False):
-    BASE_DIR = sys._MEIPASS
+    BASE_DIR = os.path.dirname(sys.executable)
+    RESOURCE_DIR = sys._MEIPASS
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    RESOURCE_DIR = BASE_DIR
 
 
 INPUT_DIR = os.path.join(BASE_DIR, 'input_imgs')
 OUTPUT_DIR = os.path.join(BASE_DIR, 'output_imgs')
-WATERMARK_PATH = os.path.join(BASE_DIR, 'watermark.png')
+WATERMARK_PATH = os.path.join(RESOURCE_DIR, 'watermark.png')
 MAX_WIDTH = 1200
 QUALITY = 85
 
@@ -94,7 +96,7 @@ if not os.path.exists(INPUT_DIR):
     print("📁 'input_imgs' folder created.")
     print("➡️ Add images into 'input_imgs' and run again.")
     input("Press Enter to exit...")
-    exit()
+    sys.exit()
 
 
 for filename in os.listdir(INPUT_DIR):
